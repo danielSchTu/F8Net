@@ -6,4 +6,4 @@ if [ ! -f $cfg ]; then
     echo "Config not found!"
 fi
 
-python3 -W ignore fix_train.py app:$cfg bs:$bs
+RANK=0 WORLD_SIZE=0 python3 -W ignore fix_train.py app:$cfg bs:$bs

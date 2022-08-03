@@ -1,6 +1,6 @@
 # =========================== Basic Settings ===========================
 # machine info
-num_gpus_per_job: 8  # number of gpus each job need
+num_gpus_per_job: 8
 
 # data
 dataset: imagenet1k
@@ -22,7 +22,7 @@ weight_decay: 0.00004
 nesterov: True
 
 # lr
-lr: 0.05
+lr: 0.1
 lr_scheduler: cos_annealing_iter
 
 
@@ -49,23 +49,25 @@ rescale_forward_conv: False
 rescale_type: constant #[stddev, constant]
 
 #
-floating_model: True
-
-#
 weight_format: [8, 7]
 input_format: [8, 6]
 
 #
-format_type: ~ #[~, per_layer, per_channel]
+format_type: per_layer #[~, per_model, per_layer, per_channel]
+
+#
+format_from_metric: True
+momentum_for_metric: 0.1
+metric: std
 
 #
 weight_decay_scheme: all
 
 #
-input_fraclen_sharing: True
+input_fraclen_sharing: False
 
 # =========================== Override Settings ===========================
-#fp_pretrained_file: /path/to/best_model.pt
-log_dir: ./runs
-model: models.fix_resnet
-depth: 18
+#fp_pretrained_file: /path/to/checkpoints/F8Net/results/imagenet/resnet18/fp32/checkpoints/best_model.pt
+log_dir: ./runs/QAT/results/imagenet/resnet18
+model: QAT.model.F8Net_Interface
+# depth: 18

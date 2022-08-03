@@ -11,3 +11,4 @@ pretrained*
 .vscode
 apps_local
 .DS_Store*
+env
