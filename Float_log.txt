@@ -1,0 +1,375 @@
+bash distributed_run.sh ./apps/QAT_imagenet/res18_QAT_train.yml 320 1
+Total batch size:  320
+No. of processes per node:  1
+use diff seed is True
+Expected seed: 1995
+seed for random sampling: 1995
+Experiment settings: ptcv_pretrained_False/nvidia_pretrained_False/hawq_pretrained_False/finetune_iters_inf/bn_calib_before_test_False/bn_calib_batch_num_-1/quant_avgpool_False/pool_fusing_False/weight_format_wl_8_fl_7/input_format_wl_8_fl_6/rescale_forward_True/rescale_forward_conv_False/rescale_type_constant/input_fraclen_sharing_False/floating_model_False/floating_wo_clip_False/no_clipping_False/fp_pretrained_False/format_type_per_layer/format_from_metric_True/momentum_for_metric_0.1/metric_std/format_grid_search_False/bn_momentum_0.1/bn_eps_0.1/lr_0.125/weight_decay_scheme_all/normalize_False/warmup_epochs_5/weight_decay_4e-05
+AllReduceDistributedDataParallel(
+  (module): ResNet(
+    (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (layer1): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer2): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer3): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer4): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+    (fc): Linear(in_features=512, out_features=1000, bias=True)
+  )
+)
+log dir:  ./runs/QAT/results/imagenet/resnet18/ptcv_pretrained_False/nvidia_pretrained_False/hawq_pretrained_False/finetune_iters_inf/bn_calib_before_test_False/bn_calib_batch_num_-1/quant_avgpool_False/pool_fusing_False/weight_format_wl_8_fl_7/input_format_wl_8_fl_6/rescale_forward_True/rescale_forward_conv_False/rescale_type_constant/input_fraclen_sharing_False/floating_model_False/floating_wo_clip_False/no_clipping_False/fp_pretrained_False/format_type_per_layer/format_from_metric_True/momentum_for_metric_0.1/metric_std/format_grid_search_False/bn_momentum_0.1/bn_eps_0.1/lr_0.125/weight_decay_scheme_all/normalize_False/warmup_epochs_5/weight_decay_4e-05
+Start training.
+**************** train *****************
+38.6s   train   0/150: loss: 4.789, top1_error: 0.974, top5_error: 0.891
+func:'run_one_epoch' took: 38.5879 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.2s   val     0/150: loss: 4.776, top1_error: 0.964, top5_error: 0.855, best_val: 1.0
+func:'run_one_epoch' took: 20.2423 sec
+New best validation top1 error: 0.964
+**************** train *****************
+32.2s   train   1/150: loss: 4.321, top1_error: 0.945, top5_error: 0.803
+func:'run_one_epoch' took: 32.2368 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+19.8s   val     1/150: loss: 4.389, top1_error: 0.943, top5_error: 0.8, best_val: 0.964
+func:'run_one_epoch' took: 19.8349 sec
+New best validation top1 error: 0.943
+**************** train *****************
+33.1s   train   2/150: loss: 4.057, top1_error: 0.914, top5_error: 0.724
+func:'run_one_epoch' took: 33.0515 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.5s   val     2/150: loss: 4.982, top1_error: 0.942, top5_error: 0.808, best_val: 0.943
+func:'run_one_epoch' took: 20.4665 sec
+New best validation top1 error: 0.942
+**************** train *****************
+32.4s   train   3/150: loss: 3.842, top1_error: 0.888, top5_error: 0.66
+func:'run_one_epoch' took: 32.4253 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+21.0s   val     3/150: loss: 4.84, top1_error: 0.939, top5_error: 0.793, best_val: 0.942
+func:'run_one_epoch' took: 21.0114 sec
+New best validation top1 error: 0.939
+**************** train *****************
+32.5s   train   4/150: loss: 3.631, top1_error: 0.852, top5_error: 0.598
+func:'run_one_epoch' took: 32.4991 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+21.1s   val     4/150: loss: 4.718, top1_error: 0.949, top5_error: 0.802, best_val: 0.939
+func:'run_one_epoch' took: 21.1158 sec
+**************** train *****************
+32.5s   train   5/150: loss: 3.45, top1_error: 0.825, top5_error: 0.546
+func:'run_one_epoch' took: 32.5039 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+21.0s   val     5/150: loss: 4.393, top1_error: 0.936, top5_error: 0.796, best_val: 0.939
+func:'run_one_epoch' took: 21.0207 sec
+New best validation top1 error: 0.936
+**************** train *****************
+32.8s   train   6/150: loss: 3.265, top1_error: 0.794, top5_error: 0.502
+func:'run_one_epoch' took: 32.8101 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.7s   val     6/150: loss: 4.525, top1_error: 0.906, top5_error: 0.699, best_val: 0.936
+func:'run_one_epoch' took: 20.7365 sec
+New best validation top1 error: 0.906
+**************** train *****************
+32.5s   train   7/150: loss: 3.109, top1_error: 0.759, top5_error: 0.462
+func:'run_one_epoch' took: 32.4994 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.5s   val     7/150: loss: 3.732, top1_error: 0.867, top5_error: 0.608, best_val: 0.906
+func:'run_one_epoch' took: 20.5392 sec
+New best validation top1 error: 0.867
+**************** train *****************
+32.5s   train   8/150: loss: 2.937, top1_error: 0.73, top5_error: 0.417
+func:'run_one_epoch' took: 32.5329 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.6s   val     8/150: loss: 3.818, top1_error: 0.841, top5_error: 0.593, best_val: 0.867
+func:'run_one_epoch' took: 20.5881 sec
+New best validation top1 error: 0.841
+**************** train *****************
+32.5s   train   9/150: loss: 2.803, top1_error: 0.703, top5_error: 0.387
+func:'run_one_epoch' took: 32.4658 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.9s   val     9/150: loss: 3.119, top1_error: 0.76, top5_error: 0.455, best_val: 0.841
+func:'run_one_epoch' took: 20.8524 sec
+New best validation top1 error: 0.760
+**************** train *****************
+32.3s   train   10/150: loss: 2.68, top1_error: 0.677, top5_error: 0.359
+func:'run_one_epoch' took: 32.3140 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.1s   val     10/150: loss: 4.617, top1_error: 0.878, top5_error: 0.656, best_val: 0.76
+func:'run_one_epoch' took: 20.1386 sec
+**************** train *****************
+32.5s   train   11/150: loss: 2.587, top1_error: 0.663, top5_error: 0.34
+func:'run_one_epoch' took: 32.5304 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.2s   val     11/150: loss: 3.867, top1_error: 0.803, top5_error: 0.494, best_val: 0.76
+func:'run_one_epoch' took: 20.2125 sec
+**************** train *****************
+32.3s   train   12/150: loss: 2.463, top1_error: 0.63, top5_error: 0.312
+func:'run_one_epoch' took: 32.2876 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.3s   val     12/150: loss: 3.062, top1_error: 0.734, top5_error: 0.399, best_val: 0.76
+func:'run_one_epoch' took: 20.3478 sec
+New best validation top1 error: 0.734
+**************** train *****************
+32.4s   train   13/150: loss: 2.356, top1_error: 0.607, top5_error: 0.292
+func:'run_one_epoch' took: 32.4203 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.2s   val     13/150: loss: 2.904, top1_error: 0.718, top5_error: 0.397, best_val: 0.734
+func:'run_one_epoch' took: 20.1543 sec
+New best validation top1 error: 0.718
+**************** train *****************
+32.4s   train   14/150: loss: 2.29, top1_error: 0.595, top5_error: 0.282
+func:'run_one_epoch' took: 32.4083 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.2s   val     14/150: loss: 4.266, top1_error: 0.828, top5_error: 0.58, best_val: 0.718
+func:'run_one_epoch' took: 20.1835 sec
+**************** train *****************
+32.3s   train   15/150: loss: 2.178, top1_error: 0.57, top5_error: 0.261
+func:'run_one_epoch' took: 32.3211 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.1s   val     15/150: loss: 2.126, top1_error: 0.571, top5_error: 0.238, best_val: 0.718
+func:'run_one_epoch' took: 20.0600 sec
+New best validation top1 error: 0.571
+**************** train *****************
+32.4s   train   16/150: loss: 2.132, top1_error: 0.56, top5_error: 0.252
+func:'run_one_epoch' took: 32.3949 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.1s   val     16/150: loss: 2.221, top1_error: 0.596, top5_error: 0.252, best_val: 0.571
+func:'run_one_epoch' took: 20.0846 sec
+**************** train *****************
+32.4s   train   17/150: loss: 2.047, top1_error: 0.542, top5_error: 0.234
+func:'run_one_epoch' took: 32.3995 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.2s   val     17/150: loss: 2.798, top1_error: 0.676, top5_error: 0.359, best_val: 0.571
+func:'run_one_epoch' took: 20.2240 sec
+**************** train *****************
+32.5s   train   18/150: loss: 1.992, top1_error: 0.528, top5_error: 0.224
+func:'run_one_epoch' took: 32.4944 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.3s   val     18/150: loss: 2.337, top1_error: 0.616, top5_error: 0.268, best_val: 0.571
+func:'run_one_epoch' took: 20.2678 sec
+**************** train *****************
+32.4s   train   19/150: loss: 1.94, top1_error: 0.514, top5_error: 0.217
+func:'run_one_epoch' took: 32.3521 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.7s   val     19/150: loss: 3.037, top1_error: 0.711, top5_error: 0.387, best_val: 0.571
+func:'run_one_epoch' took: 20.7102 sec
+**************** train *****************
+32.5s   train   20/150: loss: 1.887, top1_error: 0.497, top5_error: 0.212
+func:'run_one_epoch' took: 32.4811 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.7s   val     20/150: loss: 2.967, top1_error: 0.727, top5_error: 0.407, best_val: 0.571
+func:'run_one_epoch' took: 20.6677 sec
+**************** train *****************
+32.5s   train   21/150: loss: 1.832, top1_error: 0.486, top5_error: 0.199
+func:'run_one_epoch' took: 32.5270 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.2s   val     21/150: loss: 1.971, top1_error: 0.536, top5_error: 0.21, best_val: 0.571
+func:'run_one_epoch' took: 20.1781 sec
+New best validation top1 error: 0.536
+**************** train *****************
+32.5s   train   22/150: loss: 1.783, top1_error: 0.48, top5_error: 0.192
+func:'run_one_epoch' took: 32.4917 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.7s   val     22/150: loss: 1.643, top1_error: 0.468, top5_error: 0.149, best_val: 0.536
+func:'run_one_epoch' took: 20.6965 sec
+New best validation top1 error: 0.468
+**************** train *****************
+32.6s   train   23/150: loss: 1.716, top1_error: 0.461, top5_error: 0.182
+func:'run_one_epoch' took: 32.5877 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.4s   val     23/150: loss: 1.666, top1_error: 0.464, top5_error: 0.146, best_val: 0.468
+func:'run_one_epoch' took: 20.4030 sec
+New best validation top1 error: 0.464
+**************** train *****************
+32.4s   train   24/150: loss: 1.687, top1_error: 0.451, top5_error: 0.177
+func:'run_one_epoch' took: 32.3656 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+21.0s   val     24/150: loss: 2.703, top1_error: 0.672, top5_error: 0.36, best_val: 0.464
+func:'run_one_epoch' took: 20.9559 sec
+**************** train *****************
+32.4s   train   25/150: loss: 1.631, top1_error: 0.444, top5_error: 0.166
+func:'run_one_epoch' took: 32.4350 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.5s   val     25/150: loss: 2.024, top1_error: 0.535, top5_error: 0.182, best_val: 0.464
+func:'run_one_epoch' took: 20.4997 sec
+**************** train *****************
+32.4s   train   26/150: loss: 1.582, top1_error: 0.428, top5_error: 0.16
+func:'run_one_epoch' took: 32.4479 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.8s   val     26/150: loss: 2.205, top1_error: 0.562, top5_error: 0.216, best_val: 0.464
+func:'run_one_epoch' took: 20.8415 sec
+**************** train *****************
+32.5s   train   27/150: loss: 1.56, top1_error: 0.422, top5_error: 0.157
+func:'run_one_epoch' took: 32.5377 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.3s   val     27/150: loss: 1.878, top1_error: 0.506, top5_error: 0.183, best_val: 0.464
+func:'run_one_epoch' took: 20.3125 sec
+**************** train *****************
+32.4s   train   28/150: loss: 1.512, top1_error: 0.414, top5_error: 0.149
+func:'run_one_epoch' took: 32.4322 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.3s   val     28/150: loss: 1.694, top1_error: 0.459, top5_error: 0.162, best_val: 0.464
+func:'run_one_epoch' took: 20.2593 sec
+New best validation top1 error: 0.459
+**************** train *****************
+32.6s   train   29/150: loss: 1.487, top1_error: 0.406, top5_error: 0.148
+func:'run_one_epoch' took: 32.5608 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.4s   val     29/150: loss: 1.313, top1_error: 0.388, top5_error: 0.098, best_val: 0.459
+func:'run_one_epoch' took: 20.4357 sec
+New best validation top1 error: 0.388
+**************** train *****************
+32.4s   train   30/150: loss: 1.473, top1_error: 0.402, top5_error: 0.146
+func:'run_one_epoch' took: 32.4406 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.5s   val     30/150: loss: 1.122, top1_error: 0.339, top5_error: 0.069, best_val: 0.388
+func:'run_one_epoch' took: 20.4948 sec
+New best validation top1 error: 0.339
+**************** train *****************
+32.4s   train   31/150: loss: 1.436, top1_error: 0.393, top5_error: 0.142
+func:'run_one_epoch' took: 32.3789 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.3s   val     31/150: loss: 1.057, top1_error: 0.317, top5_error: 0.061, best_val: 0.339
+func:'run_one_epoch' took: 20.3283 sec
+New best validation top1 error: 0.317
+**************** train *****************
+32.6s   train   32/150: loss: 1.408, top1_error: 0.384, top5_error: 0.138
+func:'run_one_epoch' took: 32.5635 sec
+~~~~~~~~~~~~~~ validation ~~~~~~~~~~~~~~
+20.8s   val     32/150: loss: 1.264, top1_error: 0.374, top5_error: 0.091, best_val: 0.317
+func:'run_one_epoch' took: 20.8265 sec
+**************** train *****************
+^CWARNING:torch.distributed.elastic.agent.server.api:Received 2 death signal, shutting down workers
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 12030 closing signal SIGINT
+Traceback (most recent call last):
+  File "/home/dschnoell/sources/F8Net/fix_train.py", line 1174, in <module>
+    main()
+  File "/home/dschnoell/sources/F8Net/fix_train.py", line 1170, in main
+    train_val_test()
+  File "/home/dschnoell/sources/F8Net/fix_train.py", line 46, in wrap
+    result = f(*args, **kw)
+  File "/home/dschnoell/sources/F8Net/fix_train.py", line 1089, in train_val_test
+    run_one_epoch(epoch,
+  File "/home/dschnoell/sources/F8Net/fix_train.py", line 46, in wrap
+    result = f(*args, **kw)
+  File "/home/dschnoell/sources/F8Net/fix_train.py", line 768, in run_one_epoch
+    loss = forward_loss(model,
+  File "/home/dschnoell/sources/F8Net/fix_train.py", line 695, in forward_loss
+    output = model(input)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/dschnoell/sources/F8Net/myutils/distributed.py", line 162, in forward
+    inputs, kwargs = self.scatter(inputs, kwargs,
+  File "/home/dschnoell/sources/F8Net/myutils/distributed.py", line 159, in scatter
+    return scatter_kwargs(inputs, kwargs, device_ids, dim=self.dim)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/nn/parallel/scatter_gather.py", line 44, in scatter_kwargs
+    inputs = scatter(inputs, target_gpus, dim) if inputs else []
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/nn/parallel/scatter_gather.py", line 36, in scatter
+    res = scatter_map(inputs)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/nn/parallel/scatter_gather.py", line 23, in scatter_map
+    return list(zip(*map(scatter_map, obj)))
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/nn/parallel/scatter_gather.py", line 19, in scatter_map
+    return Scatter.apply(target_gpus, None, dim, obj)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/nn/parallel/_functions.py", line 96, in forward
+    outputs = comm.scatter(input, target_gpus, chunk_sizes, ctx.dim, streams)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/nn/parallel/comm.py", line 189, in scatter
+    return tuple(torch._C._scatter(tensor, devices, chunk_sizes, dim, streams))
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/launch.py", line 193, in <module>
+    main()
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/launch.py", line 189, in main
+    launch(args)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/launch.py", line 174, in launch
+    run(args)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    elastic_launch(
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 236, in launch_agent
+    result = agent.run()
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 709, in run
+    result = self._invoke_run(role)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 850, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/dschnoell/sources/F8Net/env/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 60, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 12004 got signal: 2
