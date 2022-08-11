@@ -1126,6 +1126,17 @@ def train_val_test():
                     'meters': (train_meters, val_meters),
                 }, os.path.join(log_dir, 'latest_checkpoint.pt'))
 
+            if (epoch)%10==0:
+                # save current checkpoint
+                torch.save(
+                    {
+                        'model': model_wrapper.state_dict(),
+                        'optimizer': optimizer.state_dict(),
+                        'last_epoch': epoch + 1,
+                        'best_val': best_val,
+                        'meters': (train_meters, val_meters),
+                    }, os.path.join(log_dir, f"checkpoint_epoch_{epoch}.pt"))
+
         # For PyTorch 1.0 or earlier, comment the following two lines
         if FLAGS.lr_scheduler not in [
                 'exp_decaying_iter', 'cos_annealing_iter', 'multistep_iter'
