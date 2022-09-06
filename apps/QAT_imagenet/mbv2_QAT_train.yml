@@ -65,7 +65,7 @@ momentum_for_metric: 0.1
 metric: std
 
 #
-# weight_decay_scheme: no_depthwise_no_bn #[all, only_no_depthwise, only_no_bn, no_depthwise_no_bn]
+weight_decay_scheme: no_depthwise_no_bn #[all, only_no_depthwise, only_no_bn, no_depthwise_no_bn]
 
 #
 input_fraclen_sharing: False
